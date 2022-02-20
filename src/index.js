@@ -10,6 +10,13 @@ const App = () => {
 
     event.preventDefault();
 
+    const index = persons.findIndex(x => x.name.toLowerCase().trim() === newName.toLowerCase().trim())
+
+    if (index !== -1) {
+
+      return alert(`${newName} is already added to the phonebook`)
+    }
+
     const newPerson = {
       name: newName
     }
