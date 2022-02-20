@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import Filter from './filter'
+import Person from './person'
+import Formulario from './formulario'
 
 const App = () => {
 
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
@@ -55,28 +53,10 @@ const App = () => {
     persons
 
   return (
-    <div>
-      <h2>Phonebook</h2>
-      <div>
-        Filtrar: <input value={filter} onChange={handleFilterChange} />
-      </div>
-      <form onSubmit={add}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-      <ul>
-        {
-          listPersons.map(x => <li key={x.name}>{x.name} - {x.number}</li>)
-        }
-      </ul>
+    <div>     
+      <Filter filter={filter} handleFilterChange={handleFilterChange} />      
+      <Formulario add={add} newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />      
+      <Person persons={listPersons} />
     </div>
   )
 }
